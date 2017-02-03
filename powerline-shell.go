@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/otann/powerline-go/powerline"
+	"github.com/shawncatz/powerline-go/powerline"
 )
 
 func main() {
@@ -36,11 +36,12 @@ func main() {
 		exitCode = os.Args[2]
 	}
 
-	theme := powerline.SolarizedDark()
+	theme := powerline.SolarizedDarkShawn()
 	symbols := powerline.DefaultSymbols()
 
 	cwd, cwdParts := powerline.GetCurrentWorkingDir()
 	segments := []powerline.Segment{
+		powerline.TimeSegment(theme),
 		powerline.HomeSegment(cwdParts, theme),
 		powerline.PathSegment(cwdParts, theme, symbols),
 		powerline.GitSegment(theme),
