@@ -149,10 +149,11 @@ func GitSegment(t Theme) Segment {
 }
 
 func TimeSegment(t Theme) Segment {
+	timestr := time.Now().Format("15:04:05")
 	return Segment{
 		Bg:     t.Time.Bg,
 		Fg:     t.Time.Fg,
-		values: []string{time.Now().Format("01:02:03")},
+		values: []string{timestr},
 	}
 }
 
