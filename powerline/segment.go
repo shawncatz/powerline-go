@@ -74,9 +74,9 @@ func PathSegment(cwdParts []string, t Theme, s Symbols) Segment {
 	}
 
 	length := len(cwdParts)
-	if length > 4 {
+	if length > 3 {
 		tmp := []string{}
-		tmp = append(tmp, cwdParts[0])
+		//tmp = append(tmp, cwdParts[0])
 		tmp = append(tmp, s.Ellipsis)
 		tmp = append(tmp, cwdParts[length-2])
 		tmp = append(tmp, cwdParts[length-1])
@@ -154,6 +154,19 @@ func TimeSegment(t Theme) Segment {
 		Bg:     t.Time.Bg,
 		Fg:     t.Time.Fg,
 		values: []string{timestr},
+	}
+}
+
+func AuthSegment(t Theme) Segment {
+	auth := os.Getenv("AUTH_ACCOUNT")
+	if auth == "" {
+		return Segment{values: nil}
+	}
+
+	return Segment{
+		Bg:     t.Auth.Bg,
+		Fg:     t.Auth.Fg,
+		values: []string{auth},
 	}
 }
 

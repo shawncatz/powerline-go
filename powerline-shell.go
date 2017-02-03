@@ -44,6 +44,7 @@ func main() {
 		powerline.TimeSegment(theme),
 		powerline.HomeSegment(cwdParts, theme),
 		powerline.PathSegment(cwdParts, theme, symbols),
+		powerline.AuthSegment(theme),
 		powerline.GitSegment(theme),
 		powerline.LockSegment(cwd, theme, symbols),
 		powerline.ExitCodeSegment(exitCode, theme),
