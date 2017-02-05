@@ -153,7 +153,7 @@ func TimeSegment(t Theme) Segment {
 	return Segment{
 		Bg:     t.Time.Bg,
 		Fg:     t.Time.Fg,
-		values: []string{"\u26A1 " + timestr},
+		values: []string{"\u262F " + timestr},
 	}
 }
 
