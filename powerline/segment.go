@@ -110,9 +110,9 @@ func getGitInformation() (string, bool) {
 	if len(matchStatus) > 0 {
 		status = fmt.Sprintf("%s %s", status, matchStatus[2])
 		if matchStatus[1] == "behind" {
-			status = fmt.Sprintf("%s\u21E7", status)
-		} else if matchStatus[1] == "ahead" {
 			status = fmt.Sprintf("%s\u21E9", status)
+		} else if matchStatus[1] == "ahead" {
+			status = fmt.Sprintf("%s\u21E7", status)
 		}
 	}
 
