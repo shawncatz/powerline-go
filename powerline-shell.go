@@ -39,14 +39,14 @@ func main() {
 	theme := powerline.SolarizedDarkShawn()
 	symbols := powerline.DefaultSymbols()
 
-	cwd, cwdParts := powerline.GetCurrentWorkingDir()
+	_, cwdParts := powerline.GetCurrentWorkingDir()
 	segments := []powerline.Segment{
 		powerline.TimeSegment(theme),
 		powerline.HomeSegment(cwdParts, theme),
 		powerline.PathSegment(cwdParts, theme, symbols),
 		powerline.AuthSegment(theme),
 		powerline.GitSegment(theme),
-		powerline.LockSegment(cwd, theme, symbols),
+		//powerline.LockSegment(cwd, theme, symbols),
 		powerline.ExitCodeSegment(exitCode, theme),
 	}
 
