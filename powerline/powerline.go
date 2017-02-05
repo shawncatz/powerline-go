@@ -1,8 +1,8 @@
 package powerline
 
 import (
-	"fmt"
 	"bytes"
+	"fmt"
 )
 
 type Symbols struct {
@@ -51,8 +51,6 @@ func (p *Powerline) AppendSegment(s Segment) {
 	p.Segments = append(p.Segments, s)
 }
 
-
-
 func (p *Powerline) PrintSegments() string {
 	if len(p.Segments) == 0 {
 		return ""
@@ -66,7 +64,7 @@ func (p *Powerline) PrintSegments() string {
 			// if it is the last one, switch to shell bg
 			nextBg = p.ShellBg
 		} else {
-			nextBg = p.Segments[i + 1].Bg
+			nextBg = p.Segments[i+1].Bg
 		}
 
 		// set background for segment
@@ -99,9 +97,9 @@ func NewPowerline(shell string, sym Symbols, segs []Segment, t Theme) Powerline 
 	var p Powerline
 	if shell == "zsh" {
 		p = Powerline{
-			ShTemplate:    "%s",
+			ShTemplate: "%s",
 			ColorTemplate: "%%{[%s;5;%sm%%}",
-			Reset:         "%{$reset_color%}",
+			Reset: "%{$reset_color%}",
 		}
 	} else {
 		p = Powerline{

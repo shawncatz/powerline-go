@@ -101,7 +101,7 @@ func getGitInformation() (string, bool) {
 		if matchBranch[2] == "detached" {
 			status = matchBranch[2]
 		} else {
-			status = matchBranch[2]
+			status = "@" + matchBranch[2]
 		}
 	}
 
@@ -110,15 +110,15 @@ func getGitInformation() (string, bool) {
 	if len(matchStatus) > 0 {
 		status = fmt.Sprintf("%s %s", status, matchStatus[2])
 		if matchStatus[1] == "behind" {
-			status = fmt.Sprintf("%s\u21E3", status)
+			status = fmt.Sprintf("%s\u21E7", status)
 		} else if matchStatus[1] == "ahead" {
-			status = fmt.Sprintf("%s\u21E1", status)
+			status = fmt.Sprintf("%s\u21E9", status)
 		}
 	}
 
 	staged = !strings.Contains(string(stdout), "nothing to commit")
 	if strings.Contains(string(stdout), "Untracked files") {
-		status = fmt.Sprintf("%s +", status)
+		status = fmt.Sprintf("%s \u271A", status)
 	}
 
 	return status, staged
@@ -153,7 +153,7 @@ func TimeSegment(t Theme) Segment {
 	return Segment{
 		Bg:     t.Time.Bg,
 		Fg:     t.Time.Fg,
-		values: []string{timestr},
+		values: []string{"\u26A1 " + timestr},
 	}
 }
 
@@ -166,7 +166,7 @@ func AuthSegment(t Theme) Segment {
 	return Segment{
 		Bg:     t.Auth.Bg,
 		Fg:     t.Auth.Fg,
-		values: []string{auth},
+		values: []string{"#" + auth},
 	}
 }
 

@@ -47,10 +47,10 @@ func SolarizedDarkShawn() Theme {
 		Auth:    ColorPair{Bg: "11", Fg: "0"},
 		Time:    ColorPair{Bg: "7", Fg: "0"},
 		Home:    ColorPair{Bg: "10", Fg: "0"},
-		Path:    ColorTriplet{Bg: "8", Fg: "0", SepFg: "0"},
+		Path:    ColorTriplet{Bg: "8", Fg: "15", SepFg: "7"},
 		Git: Git{
-			Clean: ColorPair{Bg: "14", Fg: "0"},
-			Dirty: ColorPair{Bg: "10", Fg: "0"},
+			Clean: ColorPair{Bg: "10", Fg: "0"},
+			Dirty: ColorPair{Bg: "9", Fg: "0"},
 		},
 		Lock:  ColorPair{Bg: "4", Fg: "7"},
 		Error: ColorPair{Bg: "1", Fg: "7"},
