@@ -105,6 +105,7 @@ func getGitInformation() (string, bool) {
 		}
 	}
 
+	// TODO: Make sure this can handle diverged branches (1 behind, 1 ahead)
 	reStatus := regexp.MustCompile(`Your branch is (ahead|behind).*?([0-9]+) comm`)
 	matchStatus := reStatus.FindStringSubmatch(string(stdout))
 	if len(matchStatus) > 0 {
@@ -114,6 +115,12 @@ func getGitInformation() (string, bool) {
 		} else if matchStatus[1] == "ahead" {
 			status = fmt.Sprintf("%s\u21E7", status)
 		}
+	}
+
+	reAmend := regexp.MustCompile(`have (\d+) and (\d+) different commits`)
+	matchAmend := reAmend.FindStringSubmatch(string(stdout))
+	if len(matchAmend) > 0 {
+		status = fmt.Sprintf("%s %s\u21E9 %s\u21E7", status, matchAmend[1], matchAmend[2])
 	}
 
 	staged = !strings.Contains(string(stdout), "nothing to commit")
