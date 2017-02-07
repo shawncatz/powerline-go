@@ -101,7 +101,7 @@ func getGitInformation() (string, bool) {
 		if matchBranch[2] == "detached" {
 			status = matchBranch[2]
 		} else {
-			status = "@" + matchBranch[2]
+			status = matchBranch[2]
 		}
 	}
 
