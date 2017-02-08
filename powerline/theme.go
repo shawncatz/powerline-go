@@ -21,6 +21,7 @@ type Theme struct {
 	Auth    ColorPair
 	Time    ColorPair
 	Home    ColorPair
+	Remote  ColorPair
 	Path    ColorTriplet
 	Git
 	Lock  ColorPair
@@ -47,6 +48,7 @@ func SolarizedDarkShawn() Theme {
 		Auth:    ColorPair{Bg: "11", Fg: "0"},
 		Time:    ColorPair{Bg: "7", Fg: "0"},
 		Home:    ColorPair{Bg: "10", Fg: "0"},
+		Remote:  ColorPair{Bg: "9", Fg: "0"},
 		Path:    ColorTriplet{Bg: "8", Fg: "15", SepFg: "7"},
 		Git: Git{
 			Clean: ColorPair{Bg: "10", Fg: "0"},

@@ -55,10 +55,18 @@ func GetCurrentWorkingDir() (string, []string) {
 
 func HomeSegment(cwdParts []string, t Theme) Segment {
 	if cwdParts[0] == "~" {
-		return Segment{
-			Bg:     t.Home.Bg,
-			Fg:     t.Home.Fg,
-			values: []string{"~"},
+		if os.Getenv("SSH_CLIENT") != "" {
+			return Segment{
+				Bg:     t.Remote.Bg,
+				Fg:     t.Remote.Fg,
+				values: []string{"~"},
+			}
+		} else {
+			return Segment{
+				Bg:     t.Home.Bg,
+				Fg:     t.Home.Fg,
+				values: []string{"~"},
+			}
 		}
 	} else {
 		return Segment{values: nil}
