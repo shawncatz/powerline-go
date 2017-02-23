@@ -74,11 +74,7 @@ func HomeSegment(cwdParts []string, t Theme) Segment {
 }
 
 func PathSegment(cwdParts []string, t Theme, s Symbols) Segment {
-	if cwdParts[0] == "~" {
-		cwdParts = cwdParts[1:]
-	} else {
-		cwdParts[0] = "/"
-	}
+	cwdParts = cwdParts[1:]
 
 	length := len(cwdParts)
 	if length > 3 {
