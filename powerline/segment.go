@@ -54,7 +54,10 @@ func GetCurrentWorkingDir() (string, []string) {
 }
 
 func HomeSegment(cwdParts []string, t Theme) Segment {
-	//if cwdParts[0] == "~" {
+	if cwdParts[0] == "" {
+		cwdParts[0] = "/"
+	}
+
 	if os.Getenv("SSH_CLIENT") != "" {
 		return Segment{
 			Bg:     t.Remote.Bg,
@@ -68,19 +71,14 @@ func HomeSegment(cwdParts []string, t Theme) Segment {
 			values: []string{cwdParts[0]},
 		}
 	}
-	//} else {
-	//	return Segment{values: nil}
-	//}
 }
 
 func PathSegment(cwdParts []string, t Theme, s Symbols) Segment {
-
-	//if cwdParts[0] == "~" {
-	//	cwdParts = cwdParts[1:]
-	//} else {
-	//	cwdParts[0] = "/"
-	//}
-	cwdParts = cwdParts[1:]
+	if cwdParts[0] == "~" {
+		cwdParts = cwdParts[1:]
+	} else {
+		cwdParts[0] = "/"
+	}
 
 	length := len(cwdParts)
 	if length > 3 {
