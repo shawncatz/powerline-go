@@ -54,32 +54,33 @@ func GetCurrentWorkingDir() (string, []string) {
 }
 
 func HomeSegment(cwdParts []string, t Theme) Segment {
-	if cwdParts[0] == "~" {
-		if os.Getenv("SSH_CLIENT") != "" {
-			return Segment{
-				Bg:     t.Remote.Bg,
-				Fg:     t.Remote.Fg,
-				values: []string{"~"},
-			}
-		} else {
-			return Segment{
-				Bg:     t.Home.Bg,
-				Fg:     t.Home.Fg,
-				values: []string{"~"},
-			}
+	//if cwdParts[0] == "~" {
+	if os.Getenv("SSH_CLIENT") != "" {
+		return Segment{
+			Bg:     t.Remote.Bg,
+			Fg:     t.Remote.Fg,
+			values: []string{cwdParts[0]},
 		}
 	} else {
-		return Segment{values: nil}
+		return Segment{
+			Bg:     t.Home.Bg,
+			Fg:     t.Home.Fg,
+			values: []string{cwdParts[0]},
+		}
 	}
+	//} else {
+	//	return Segment{values: nil}
+	//}
 }
 
 func PathSegment(cwdParts []string, t Theme, s Symbols) Segment {
 
-	if cwdParts[0] == "~" {
-		cwdParts = cwdParts[1:]
-	} else {
-		cwdParts[0] = "/"
-	}
+	//if cwdParts[0] == "~" {
+	//	cwdParts = cwdParts[1:]
+	//} else {
+	//	cwdParts[0] = "/"
+	//}
+	cwdParts = cwdParts[1:]
 
 	length := len(cwdParts)
 	if length > 3 {
@@ -113,7 +114,6 @@ func getGitInformation() (string, bool) {
 		}
 	}
 
-	// TODO: Make sure this can handle diverged branches (1 behind, 1 ahead)
 	reStatus := regexp.MustCompile(`Your branch is (ahead|behind).*?([0-9]+) comm`)
 	matchStatus := reStatus.FindStringSubmatch(string(stdout))
 	if len(matchStatus) > 0 {
@@ -125,6 +125,7 @@ func getGitInformation() (string, bool) {
 		}
 	}
 
+	// handle diverged branches (1 behind, 1 ahead)
 	reAmend := regexp.MustCompile(`have (\d+) and (\d+) different commits`)
 	matchAmend := reAmend.FindStringSubmatch(string(stdout))
 	if len(matchAmend) > 0 {
