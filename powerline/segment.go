@@ -58,16 +58,16 @@ func HomeSegment(cwdParts []string, t Theme) Segment {
 		cwdParts[0] = "/"
 	}
 
-	if os.Getenv("SSH_CLIENT") != "" {
+	if cwdParts[0] == "~" {
 		return Segment{
-			Bg:     t.Remote.Bg,
-			Fg:     t.Remote.Fg,
-			values: []string{cwdParts[0]},
+			Bg:     t.Path.Bg,
+			Fg:     t.Path.Fg,
+			values: []string{"~"},
 		}
 	} else {
 		return Segment{
-			Bg:     t.Home.Bg,
-			Fg:     t.Home.Fg,
+			Bg:     t.Path.Bg,
+			Fg:     t.Path.Fg,
 			values: []string{cwdParts[0]},
 		}
 	}
@@ -160,10 +160,18 @@ func GitSegment(t Theme) Segment {
 
 func TimeSegment(t Theme) Segment {
 	timestr := time.Now().Format("15:04:05")
-	return Segment{
-		Bg:     t.Time.Bg,
-		Fg:     t.Time.Fg,
-		values: []string{"\u262F " + timestr},
+	if os.Getenv("SSH_CLIENT") != "" {
+		return Segment{
+			Bg:     t.Remote.Bg,
+			Fg:     t.Remote.Fg,
+			values: []string{"\u262F " + timestr},
+		}
+	} else {
+		return Segment{
+			Bg:     t.Home.Bg,
+			Fg:     t.Home.Fg,
+			values: []string{"\u262F " + timestr},
+		}
 	}
 }
 
@@ -177,6 +185,19 @@ func AuthSegment(t Theme) Segment {
 		Bg:     t.Auth.Bg,
 		Fg:     t.Auth.Fg,
 		values: []string{"#" + auth},
+	}
+}
+
+func KitchenSegment(t Theme) Segment {
+	focus := os.Getenv("KITCHEN_FOCUS")
+	if focus == "" {
+		return Segment{values: nil}
+	}
+
+	return Segment{
+		Bg:     t.Kitchen.Bg,
+		Fg:     t.Kitchen.Fg,
+		values: []string{"@" + focus},
 	}
 }
 

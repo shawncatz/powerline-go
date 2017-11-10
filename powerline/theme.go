@@ -19,6 +19,7 @@ type Git struct {
 type Theme struct {
 	ShellBg string
 	Auth    ColorPair
+	Kitchen ColorPair
 	Time    ColorPair
 	Home    ColorPair
 	Remote  ColorPair
@@ -46,6 +47,7 @@ func SolarizedDarkShawn() Theme {
 	return Theme{
 		ShellBg: "0",
 		Auth:    ColorPair{Bg: "11", Fg: "0"},
+		Kitchen: ColorPair{Bg: "6", Fg: "0"},
 		Time:    ColorPair{Bg: "7", Fg: "0"},
 		Home:    ColorPair{Bg: "10", Fg: "0"},
 		Remote:  ColorPair{Bg: "9", Fg: "0"},
