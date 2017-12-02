@@ -213,3 +213,11 @@ func ExitCodeSegment(code string, t Theme) Segment {
 		}
 	}
 }
+
+func LinefeedSegment(t Theme) Segment {
+    return Segment{
+        Bg:     t.ShellBg,
+        Fg:     t.ShellBg,
+        values: []string{"\n"},
+    }
+}

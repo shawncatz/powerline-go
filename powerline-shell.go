@@ -41,7 +41,6 @@ func main() {
 
 	_, cwdParts := powerline.GetCurrentWorkingDir()
 	segments := []powerline.Segment{
-		powerline.TimeSegment(theme),
 		powerline.HomeSegment(cwdParts, theme),
 		powerline.PathSegment(cwdParts, theme, symbols),
 		powerline.AuthSegment(theme),
@@ -49,6 +48,8 @@ func main() {
 		powerline.GitSegment(theme),
 		//powerline.LockSegment(cwd, theme, symbols),
 		powerline.ExitCodeSegment(exitCode, theme),
+		powerline.LinefeedSegment(theme),
+		powerline.TimeSegment(theme),
 	}
 
 	p := powerline.NewPowerline(shell, symbols, segments, theme)
